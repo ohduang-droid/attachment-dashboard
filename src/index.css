@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme (background = #F7F7F4) */
+    --background: 60 16% 96%;
+    --foreground: 0 0% 10%;
+
+    --card: 60 16% 96%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 60 16% 96%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 330 100% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 60 12% 92%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 60 12% 92%;
+    --muted-foreground: 0 0% 45%;
+
+    /* Accent (used by Select highlighted item, etc.) */
+    --accent: 359 97% 28%; /* #8D0204 */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 60 8% 86%;
+    --input: 60 8% 86%;
+    --ring: 330 100% 55%;
+
+    --radius: 0.5rem;
+
+    /* Ghost custom tokens */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 7%;
+
+    /* Sidebar */
+    --sidebar-background: 60 16% 96%;
+    --sidebar-foreground: 0 0% 35%;
+    --sidebar-primary: 330 100% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 60 12% 92%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 60 8% 86%;
+    --sidebar-ring: 330 100% 55%;
+
+    /* Chart colors - Ghost gradient */
+    --chart-1: 359 97% 28%;
+    --chart-2: 9 90% 40%; /* close to #C32C0A */
+    --chart-3: 142 71% 45%;
+  }
+
+  .dark {
+    /* Ghost-inspired dark theme */
+    --background: 0 0% 7%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 11%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 11%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 330 100% 71%;
+    --primary-foreground: 0 0% 7%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 359 97% 28%;
+    --accent-foreground: 0 0% 7%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 330 100% 71%;
+
+    --sidebar-background: 0 0% 9%;
+    --sidebar-foreground: 0 0% 65%;
+    --sidebar-primary: 330 100% 71%;
+    --sidebar-primary-foreground: 0 0% 7%;
+    --sidebar-accent: 0 0% 14%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 330 100% 71%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+@layer utilities {
+  .gradient-line {
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+  }
+}
+
+/* Custom scrollbar - Ghost style */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground/50;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.3s ease-out forwards;
+}
+
+/* Ghost-style gradient chart area */
+.chart-gradient-area {
+  fill: url(#chartGradient);
+}

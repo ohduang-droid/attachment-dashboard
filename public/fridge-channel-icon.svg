@@ -1,0 +1,42 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="strokeGradient" x1="16" y1="10" x2="52" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2E3B43"/>
+      <stop offset="55%" stop-color="#1F2A31"/>
+      <stop offset="100%" stop-color="#162026"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer fridge outline -->
+  <rect
+    x="16"
+    y="10"
+    width="34"
+    height="48"
+    rx="10"
+    stroke="url(#strokeGradient)"
+    stroke-width="6"
+    stroke-linejoin="round"
+  />
+
+  <!-- Inner panel (very subtle like the attachment) -->
+  <rect
+    x="19"
+    y="13"
+    width="28"
+    height="42"
+    rx="8"
+    stroke="#1F2A31"
+    stroke-opacity="0.08"
+    stroke-width="2"
+  />
+
+  <!-- Handle -->
+  <path
+    d="M42 28V44"
+    stroke="url(#strokeGradient)"
+    stroke-width="7"
+    stroke-linecap="round"
+  />
+</svg>
+
