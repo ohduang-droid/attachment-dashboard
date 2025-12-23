@@ -21,20 +21,20 @@ RUN npm run build
 # Stage 2: Production stage
 FROM node:18-alpine AS production
 
-# Install serve to run the production build
-RUN npm install -g serve
-
 # Set working directory
 WORKDIR /app
 
 # Copy built files from builder stage
 COPY --from=builder /app/dist ./dist
 
+# Copy server script
+COPY server.js ./
+
 # Expose port 3000
 EXPOSE 3000
 
-# Start the application using serve
-CMD ["serve", "-s", "dist", "-l", "3000"]
+# Start the application using simple Node.js server
+CMD ["node", "server.js"]
 
 # Stage 3: Development stage (optional)
 FROM node:18-alpine AS development
