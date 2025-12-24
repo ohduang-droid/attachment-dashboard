@@ -35,7 +35,7 @@ const Index = () => {
           </div>
           <div className="flex items-center gap-3">
             <Select defaultValue="30d">
-              <SelectTrigger className="h-8 w-28 bg-secondary border-border text-sm sm:w-32">
+              <SelectTrigger className="h-8 w-28 bg-secondary border-border text-sm sm:w-32 focus:ring-[#8D0204]/35 focus:border-[#8D0204]/50">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
