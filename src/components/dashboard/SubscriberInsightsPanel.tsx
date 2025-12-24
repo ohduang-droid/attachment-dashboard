@@ -14,10 +14,13 @@ export function SubscriberInsightsPanel() {
 
   return (
     <div className="rounded-[20px] border border-border/70 p-1">
-      <div className="space-y-6 rounded-[16px] bg-background/40 p-3">
+      <div className="space-y-6 rounded-[16px] bg-background/40 p-3 sm:p-4">
         <div className="space-y-3">
           <Select value={subscriberMode} onValueChange={(v) => setSubscriberMode(v as SubscriberMode)}>
-            <SelectTrigger className="h-9 w-52 bg-secondary border-border text-sm" aria-label="Select subscriber mode">
+            <SelectTrigger
+              className="h-9 w-full bg-secondary border-border text-sm sm:w-64 focus:ring-[#8D0204]/35 focus:border-[#8D0204]/50"
+              aria-label="Select subscriber mode"
+            >
               <SelectValue />
             </SelectTrigger>
             <SelectContent>

@@ -31,7 +31,7 @@ export function MemberChart({ type, magnetId }: MemberChartProps) {
   
   return (
     <div className="space-y-4">
-      <div className="h-64 w-full">
+      <div className="h-56 w-full sm:h-64">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
             <defs>
@@ -50,13 +50,15 @@ export function MemberChart({ type, magnetId }: MemberChartProps) {
               axisLine={false}
               tickLine={false}
               tick={{ fill: 'hsl(0, 0%, 55%)', fontSize: 12 }}
+              interval="preserveStartEnd"
+              minTickGap={18}
               dy={10}
             />
             <YAxis 
               axisLine={false}
               tickLine={false}
               tick={{ fill: 'hsl(0, 0%, 55%)', fontSize: 12 }}
-              width={50}
+              width={44}
               tickFormatter={(value) => value >= 1000 ? `${(value/1000).toFixed(0)}k` : value}
             />
             <Tooltip

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Sidebar } from "@/components/dashboard/Sidebar";
+import { MobileSidebar, Sidebar } from "@/components/dashboard/Sidebar";
 import { MetricCard } from "@/components/dashboard/MetricCard";
 import { MemberChart } from "@/components/dashboard/MemberChart";
 import { SubscriberInsightsPanel } from "@/components/dashboard/SubscriberInsightsPanel";
@@ -24,13 +24,18 @@ const Index = () => {
       <Sidebar />
       
       {/* Main Content */}
-      <main className="ml-60 min-h-screen">
+      <main className="min-h-screen md:ml-60">
         {/* Header */}
-        <header className="sticky top-0 z-40 flex h-14 items-center justify-between border-b border-border bg-background/95 backdrop-blur px-8">
-          <h1 className="text-xl font-semibold text-foreground">Dashboard</h1>
+        <header className="sticky top-0 z-40 flex h-14 items-center justify-between border-b border-border bg-background/95 backdrop-blur px-4 md:px-8">
+          <div className="flex min-w-0 items-center gap-2">
+            <MobileSidebar />
+            <h1 className="min-w-0 truncate text-lg font-semibold text-foreground sm:text-xl">
+              Dashboard
+            </h1>
+          </div>
           <div className="flex items-center gap-3">
             <Select defaultValue="30d">
-              <SelectTrigger className="w-32 h-8 bg-secondary border-border text-sm">
+              <SelectTrigger className="h-8 w-28 bg-secondary border-border text-sm sm:w-32">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -44,12 +49,15 @@ const Index = () => {
         </header>
 
         {/* Dashboard Content */}
-        <div className="p-8 space-y-8">
+        <div className="space-y-6 p-4 md:space-y-8 md:p-8">
           {/* Top Metrics - Ghost Style */}
-          <div className="rounded-xl border border-border bg-card p-6 animate-fade-in">
+          <div className="animate-fade-in rounded-xl border border-border bg-card p-4 sm:p-6">
             <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
               <Select value={selectedMagnetId} onValueChange={setSelectedMagnetId}>
-                <SelectTrigger className="h-9 w-64 bg-secondary border-border text-sm" aria-label="Select magnet">
+                <SelectTrigger
+                  className="h-9 w-full bg-secondary border-border text-sm sm:w-72 md:w-80 focus:ring-[#8D0204]/35 focus:border-[#8D0204]/50"
+                  aria-label="Select magnet"
+                >
                   <SelectValue placeholder="Select a magnet" />
                 </SelectTrigger>
                 <SelectContent>
@@ -65,7 +73,7 @@ const Index = () => {
             <div
               role="tablist"
               aria-label="Metric chart tabs"
-              className="grid grid-cols-4 gap-6 mb-6"
+              className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 md:gap-6"
             >
               <button
                 type="button"
@@ -73,7 +81,7 @@ const Index = () => {
                 aria-selected={chartType === "magnetPurchases"}
                 onClick={() => setChartType("magnetPurchases")}
                 className={cn(
-                  "rounded-lg p-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8D0204]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                  "min-w-0 rounded-lg p-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8D0204]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   chartType === "magnetPurchases"
                     ? "bg-[#8D0204]/10 ring-1 ring-[#8D0204]/40"
                     : "hover:bg-secondary/40"
@@ -91,7 +99,7 @@ const Index = () => {
                 aria-selected={chartType === "paidSubscribersFromFc"}
                 onClick={() => setChartType("paidSubscribersFromFc")}
                 className={cn(
-                  "rounded-lg p-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8D0204]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                  "min-w-0 rounded-lg p-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8D0204]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   chartType === "paidSubscribersFromFc"
                     ? "bg-[#8D0204]/10 ring-1 ring-[#8D0204]/40"
                     : "hover:bg-secondary/40"
@@ -109,7 +117,7 @@ const Index = () => {
                 aria-selected={chartType === "fullReadOpens"}
                 onClick={() => setChartType("fullReadOpens")}
                 className={cn(
-                  "rounded-lg p-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8D0204]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                  "min-w-0 rounded-lg p-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8D0204]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   chartType === "fullReadOpens"
                     ? "bg-[#8D0204]/10 ring-1 ring-[#8D0204]/40"
                     : "hover:bg-secondary/40"
@@ -127,7 +135,7 @@ const Index = () => {
                 aria-selected={chartType === "renewedSubscribers"}
                 onClick={() => setChartType("renewedSubscribers")}
                 className={cn(
-                  "rounded-lg p-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8D0204]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                  "min-w-0 rounded-lg p-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8D0204]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   chartType === "renewedSubscribers"
                     ? "bg-[#8D0204]/10 ring-1 ring-[#8D0204]/40"
                     : "hover:bg-secondary/40"

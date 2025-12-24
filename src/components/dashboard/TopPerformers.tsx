@@ -83,7 +83,7 @@ export function TopPerformers({ mode }: TopPerformersProps) {
 
   return (
     <div
-      className="rounded-2xl border border-border bg-[#F7F7F4] p-6 text-foreground shadow-sm animate-fade-in"
+      className="rounded-2xl border border-border bg-[#F7F7F4] p-4 text-foreground shadow-sm animate-fade-in sm:p-6"
       style={{ animationDelay: "300ms" }}
     >
       <div className="mb-6">
@@ -91,14 +91,8 @@ export function TopPerformers({ mode }: TopPerformersProps) {
         <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p>
       </div>
 
-      <div className="grid grid-cols-[1fr_110px_80px_110px] gap-6 px-2 pb-3 text-xs tracking-[0.2em] text-muted-foreground">
-        <div>CONTENT</div>
-        <div className="text-right">Previews</div>
-        <div className="text-right">CONV %</div>
-        <div className="text-right">CHANGE</div>
-      </div>
-
-      <div className="space-y-2">
+      {/* Mobile layout */}
+      <div className="space-y-2 sm:hidden">
         {rows.map((item, index) => {
           const isPositive = item.change >= 0;
 
@@ -106,37 +100,100 @@ export function TopPerformers({ mode }: TopPerformersProps) {
             <button
               key={index}
               type="button"
-              className="w-full rounded-xl px-2 py-3 text-left transition-colors hover:bg-secondary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8D0204]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#F7F7F4]"
+              className="w-full rounded-xl px-3 py-3 text-left transition-colors hover:bg-secondary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8D0204]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#F7F7F4]"
             >
-              <div className="grid grid-cols-[1fr_110px_80px_110px] items-center gap-6">
-                <div className="min-w-0 pr-2">
-                  <p className="truncate text-sm font-medium text-foreground">
-                    {item.title}
-                  </p>
-                </div>
-                <div className="text-right text-sm text-muted-foreground tabular-nums">
-                  {item.previews.toLocaleString()}
-                </div>
-                <div className="text-right text-sm font-medium text-foreground tabular-nums">
-                  {item.convRate.toFixed(1)}%
-                </div>
-                <div
-                  className={cn(
-                    "flex items-center justify-end gap-1.5 text-sm font-medium tabular-nums",
-                    isPositive ? "text-emerald-500" : "text-red-500"
-                  )}
-                >
-                  {isPositive ? (
-                    <TrendingUp className="h-4 w-4" />
-                  ) : (
-                    <TrendingDown className="h-4 w-4" />
-                  )}
-                  <span>{isPositive ? "+" : ""}{item.change}%</span>
+              <div className="space-y-2">
+                <p className="break-words text-sm font-medium text-foreground">
+                  {item.title}
+                </p>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="rounded-lg bg-secondary/40 p-2">
+                    <p className="text-[11px] tracking-wide text-muted-foreground">Previews</p>
+                    <p className="mt-0.5 text-sm font-medium tabular-nums text-foreground">
+                      {item.previews.toLocaleString()}
+                    </p>
+                  </div>
+
+                  <div className="rounded-lg bg-secondary/40 p-2">
+                    <p className="text-[11px] tracking-wide text-muted-foreground">Conv %</p>
+                    <p className="mt-0.5 text-sm font-medium tabular-nums text-foreground">
+                      {item.convRate.toFixed(1)}%
+                    </p>
+                  </div>
+
+                  <div className="col-span-2 rounded-lg bg-secondary/40 p-2">
+                    <p className="text-[11px] tracking-wide text-muted-foreground">Change</p>
+                    <div
+                      className={cn(
+                        "mt-0.5 flex items-center gap-1.5 text-sm font-medium tabular-nums",
+                        isPositive ? "text-emerald-600" : "text-red-600"
+                      )}
+                    >
+                      {isPositive ? (
+                        <TrendingUp className="h-4 w-4" />
+                      ) : (
+                        <TrendingDown className="h-4 w-4" />
+                      )}
+                      <span>{isPositive ? "+" : ""}{item.change}%</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </button>
           );
         })}
+      </div>
+
+      {/* Desktop layout */}
+      <div className="hidden sm:block">
+        <div className="grid grid-cols-[1fr_110px_80px_110px] gap-6 px-2 pb-3 text-xs tracking-[0.2em] text-muted-foreground">
+          <div>CONTENT</div>
+          <div className="text-right">Previews</div>
+          <div className="text-right">CONV %</div>
+          <div className="text-right">CHANGE</div>
+        </div>
+
+        <div className="space-y-2">
+          {rows.map((item, index) => {
+            const isPositive = item.change >= 0;
+
+            return (
+              <button
+                key={index}
+                type="button"
+                className="w-full rounded-xl px-2 py-3 text-left transition-colors hover:bg-secondary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8D0204]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#F7F7F4]"
+              >
+                <div className="grid grid-cols-[1fr_110px_80px_110px] items-center gap-6">
+                  <div className="min-w-0 pr-2">
+                    <p className="truncate text-sm font-medium text-foreground">
+                      {item.title}
+                    </p>
+                  </div>
+                  <div className="text-right text-sm text-muted-foreground tabular-nums">
+                    {item.previews.toLocaleString()}
+                  </div>
+                  <div className="text-right text-sm font-medium text-foreground tabular-nums">
+                    {item.convRate.toFixed(1)}%
+                  </div>
+                  <div
+                    className={cn(
+                      "flex items-center justify-end gap-1.5 text-sm font-medium tabular-nums",
+                      isPositive ? "text-emerald-500" : "text-red-500"
+                    )}
+                  >
+                    {isPositive ? (
+                      <TrendingUp className="h-4 w-4" />
+                    ) : (
+                      <TrendingDown className="h-4 w-4" />
+                    )}
+                    <span>{isPositive ? "+" : ""}{item.change}%</span>
+                  </div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

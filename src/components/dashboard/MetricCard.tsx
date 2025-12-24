@@ -12,10 +12,10 @@ export function MetricCard({ label, value, change, className }: MetricCardProps)
   const isPositive = change && change >= 0;
   
   return (
-    <div className={cn("space-y-1", className)}>
-      <p className="text-sm text-muted-foreground">{label}</p>
-      <div className="flex items-baseline gap-2">
-        <span className="text-3xl font-semibold tracking-tight text-foreground">
+    <div className={cn("min-w-0 space-y-1", className)}>
+      <p className="text-xs leading-snug text-muted-foreground sm:text-sm">{label}</p>
+      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+        <span className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
           {value}
         </span>
         {change !== undefined && (
